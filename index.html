@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Operación Picos de Europa — Reto Idonia · I Hackathon IABiomed</title>
+    <meta
+      name="description"
+      content="Interoperabilidad y humanización de imagen médica entre Asturias y Cantabria. Reto Idonia · I Hackathon IABiomed. Equipo HGU Gregorio Marañón."
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clinic: { bg: "#0f172a", panel: "#111c34", line: "#1e293b" },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html { scroll-behavior: smooth; }
+      body { background: #0f172a; color: #e2e8f0; }
+      .fade-in { animation: fade 0.5s ease both; }
+      @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    </style>
+  </head>
+  <body class="font-sans">
+    <!-- NAV -->
+    <header class="sticky top-0 z-20 border-b border-clinic-line bg-clinic-bg/90 backdrop-blur">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
+        <a href="#top" class="font-bold text-slate-100">
+          🏔️ Operación <span class="text-teal-400">Picos de Europa</span>
+        </a>
+        <nav class="hidden gap-5 text-sm text-slate-300 md:flex">
+          <a href="#problema" class="hover:text-teal-300">Problema</a>
+          <a href="#solucion" class="hover:text-teal-300">Solución</a>
+          <a href="#demo" class="hover:text-teal-300">Demo</a>
+          <a href="#caracteristicas" class="hover:text-teal-300">Características</a>
+          <a href="#documentos" class="hover:text-teal-300">Documentos</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top" class="mx-auto max-w-6xl px-5">
+      <!-- HERO -->
+      <section class="py-14 text-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-teal-400">
+          Reto Idonia · I Hackathon IABiomed
+        </p>
+        <h1 class="mt-3 text-4xl font-extrabold text-slate-50 md:text-5xl">
+          Interoperabilidad y humanización de imagen médica<br class="hidden md:block" />
+          <span class="text-teal-400">sin fronteras</span>
+        </h1>
+        <p class="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
+          Que las imágenes y el informe de un paciente operado en Cantabria viajen con él a
+          Asturias — y que además se entiendan.
+        </p>
+        <div class="mt-6 flex flex-wrap justify-center gap-3">
+          <a href="#demo" class="rounded-lg bg-teal-500 px-6 py-3 font-semibold text-slate-900 hover:bg-teal-400">
+            ▶ Ver demo interactiva
+          </a>
+          <a href="#documentos" class="rounded-lg border border-clinic-line px-6 py-3 font-semibold text-slate-200 hover:border-teal-500">
+            ⬇ Descargar resúmenes
+          </a>
+        </div>
+        <p class="mt-6 text-sm text-slate-500">
+          Equipo: <strong class="text-slate-300">Pablo Lozano Lominchar · Nieves Cubo · María Homero</strong>
+          — HGU Gregorio Marañón
+        </p>
+        <div class="mt-4 flex flex-wrap justify-center gap-2 text-xs">
+          <span class="rounded-full border border-clinic-line px-3 py-1 text-slate-400">Idonia Connect Cloud</span>
+          <span class="rounded-full border border-clinic-line px-3 py-1 text-slate-400">Recog · IA de lenguaje</span>
+          <span class="rounded-full border border-clinic-line px-3 py-1 text-slate-400">FastAPI · React</span>
+          <span class="rounded-full border border-clinic-line px-3 py-1 text-slate-400">DICOM · OCR · Email</span>
+        </div>
+      </section>
+
+      <!-- PROBLEMA -->
+      <section id="problema" class="border-t border-clinic-line py-12">
+        <h2 class="text-2xl font-bold text-slate-100">El problema humano</h2>
+        <div class="mt-4 grid gap-6 md:grid-cols-2">
+          <p class="text-slate-300">
+            Por la orografía de los Picos de Europa, muchos vecinos de la Asturias oriental
+            tienen más cerca el <strong>Hospital de Sierrallana (Cantabria)</strong> que su
+            hospital de referencia. Un montañero de <strong>Panes</strong> se lesiona la rodilla,
+            lo operan en Sierrallana y una semana después vuelve a Asturias.
+          </p>
+          <p class="text-slate-300">
+            Su médico de cabecera necesita las imágenes y el informe para el seguimiento, pero
+            hoy <strong class="text-teal-300">los datos médicos no viajan con el paciente</strong>.
+            Se repiten pruebas, se pierde tiempo y el paciente no entiende su proceso.
+          </p>
+        </div>
+      </section>
+
+      <!-- SOLUCION -->
+      <section id="solucion" class="border-t border-clinic-line py-12">
+        <h2 class="text-2xl font-bold text-slate-100">La solución, en tres fases</h2>
+        <p class="mt-2 text-slate-400">Conectamos Idonia (imagen médica) con Recog (IA de lenguaje).</p>
+        <div class="mt-6 grid gap-5 md:grid-cols-3">
+          <div class="rounded-xl border border-clinic-line bg-clinic-panel p-5">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Fase I</span>
+            <h3 class="mt-1 font-semibold text-teal-300">Ingesta</h3>
+            <p class="mt-2 text-sm text-slate-300">
+              Vía API de Idonia se crea la carpeta <em>«Traslados desde Asturias»</em> y la del DNI
+              del paciente; se suben la imagen y el informe médico.
+            </p>
+          </div>
+          <div class="rounded-xl border border-clinic-line bg-clinic-panel p-5">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Fase II</span>
+            <h3 class="mt-1 font-semibold text-teal-300">Humanización</h3>
+            <p class="mt-2 text-sm text-slate-300">
+              Recog reescribe el informe técnico a lenguaje empático y sencillo, y se reinyecta
+              como <em>«Informe para paciente»</em>.
+            </p>
+          </div>
+          <div class="rounded-xl border border-clinic-line bg-clinic-panel p-5">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Fase III</span>
+            <h3 class="mt-1 font-semibold text-teal-300">Entrega</h3>
+            <p class="mt-2 text-sm text-slate-300">
+              Idonia genera un <strong>Magic Link</strong> (QR + PIN) para ver imagen e informes en
+              cualquier dispositivo.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- DEMO -->
+      <section id="demo" class="border-t border-clinic-line py-12">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-bold text-slate-100">Demo interactiva</h2>
+          <button id="runBtn" class="rounded-lg bg-teal-500 px-5 py-2 font-semibold text-slate-900 hover:bg-teal-400">
+            Iniciar traslado
+          </button>
+        </div>
+        <p class="mt-2 text-sm text-slate-500">
+          Simulación en el navegador (sin servidor). Datos 100% ficticios. Caso: Manuel · DNI
+          12345678Z · RM rodilla derecha.
+        </p>
+
+        <!-- Phase cards -->
+        <div id="phases" class="mt-6 grid gap-4 md:grid-cols-3"></div>
+
+        <!-- Result -->
+        <div id="result" class="mt-6 hidden space-y-6">
+          <div class="grid gap-6 lg:grid-cols-2">
+            <!-- Magic link -->
+            <div class="rounded-xl border border-teal-700/50 bg-clinic-panel p-5">
+              <h3 class="text-sm font-semibold uppercase tracking-wider text-teal-300">Magic Link de entrega</h3>
+              <div class="mt-3 flex items-center gap-4">
+                <img src="assets/qr.png" alt="QR de ejemplo" class="h-32 w-32 rounded bg-white p-2" />
+                <div>
+                  <p class="text-xs uppercase tracking-wider text-slate-500">PIN</p>
+                  <p class="font-mono text-2xl tracking-[0.3em] text-teal-200">GPB15</p>
+                  <p class="mt-2 text-xs text-slate-500">Acceso seguro QR + PIN (ejemplo).</p>
+                </div>
+              </div>
+            </div>
+            <!-- Image -->
+            <div class="rounded-xl border border-clinic-line bg-clinic-panel p-5">
+              <h3 class="mb-2 text-sm font-semibold text-slate-300">Prueba de imagen (sintética)</h3>
+              <img src="assets/estudio_demo.png" alt="Estudio sintético de demostración" class="w-full rounded-lg border border-clinic-line" />
+            </div>
+          </div>
+          <!-- Reports -->
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="rounded-xl border border-clinic-line bg-clinic-panel p-5">
+              <h3 class="mb-2 text-sm font-semibold text-slate-300">
+                <span class="rounded bg-slate-700 px-2 py-0.5 text-xs">Sierrallana</span> Informe médico (técnico)
+              </h3>
+              <pre id="tech" class="max-h-80 overflow-y-auto whitespace-pre-wrap font-sans text-sm text-slate-400"></pre>
+            </div>
+            <div class="rounded-xl border border-teal-700/40 bg-teal-950/20 p-5">
+              <h3 class="mb-2 text-sm font-semibold text-teal-200">
+                <span class="rounded bg-teal-600 px-2 py-0.5 text-xs text-slate-900">Recog · IA</span> Informe para paciente
+              </h3>
+              <pre id="human" class="max-h-80 overflow-y-auto whitespace-pre-wrap font-sans text-sm text-slate-200"></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARACTERISTICAS -->
+      <section id="caracteristicas" class="border-t border-clinic-line py-12">
+        <h2 class="text-2xl font-bold text-slate-100">Características</h2>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="rounded-xl border border-clinic-line bg-clinic-panel p-5">
+            <h3 class="font-semibold text-teal-300">🩻 Imagen DICOM</h3>
+            <p class="mt-1 text-sm text-slate-300">Subida de .dcm / .zip con previsualización; el original se envía a Idonia.</p>
+          </div>
+          <div class="rounded-xl border border-clinic-line bg-clinic-panel p-5">
+            <h3 class="font-semibold text-teal-300">🔎 OCR</h3>
+            <p class="mt-1 text-sm text-slate-300">Lectura automática de informes PDF escaneados (tesseract + poppler).</p>
+          </div>
+          <div class="rounded-xl border border-clinic-line bg-clinic-panel p-5">
+            <h3 class="font-semibold text-teal-300">✉️ Email al paciente</h3>
+            <p class="mt-1 text-sm text-slate-300">Envío del informe humanizado por correo (real con SMTP, o simulado).</p>
+          </div>
+          <div class="rounded-xl border border-clinic-line bg-clinic-panel p-5">
+            <h3 class="font-semibold text-teal-300">🧪 Modo simulación</h3>
+            <p class="mt-1 text-sm text-slate-300">Funciona de extremo a extremo sin claves; conmuta a real con una variable.</p>
+          </div>
+          <div class="rounded-xl border border-clinic-line bg-clinic-panel p-5">
+            <h3 class="font-semibold text-teal-300">📋 Trazabilidad</h3>
+            <p class="mt-1 text-sm text-slate-300">Cada paso se registra como JSON estructurado (evidencia auditable).</p>
+          </div>
+          <div class="rounded-xl border border-clinic-line bg-clinic-panel p-5">
+            <h3 class="font-semibold text-teal-300">🔒 RGPD</h3>
+            <p class="mt-1 text-sm text-slate-300">Solo datos ficticios; secretos y materiales reales fuera del repositorio.</p>
+          </div>
+        </div>
+
+        <h3 class="mt-10 text-lg font-semibold text-slate-200">Arquitectura</h3>
+        <pre class="mt-3 overflow-x-auto rounded-xl border border-clinic-line bg-black/40 p-4 text-xs text-slate-300">
+Modalidad RM/TC ─DICOM─► PACS ─DICOMweb/API─► Idonia Connect Cloud (middleware)
+                                                   ▲
+   Frontend (React/Vite/TS) ─REST + SSE─► Backend (FastAPI) · PipelineOrchestrator
+        dashboard · visor                   ├─ IdoniaClient (real | mock)
+                                            └─ RecogClient  (real | mock)
+                                           logs/pipeline.jsonl (evidencia)</pre>
+        <div class="mt-3 flex flex-wrap gap-2 text-xs">
+          <span class="rounded-full border border-clinic-line px-3 py-1 text-slate-400">Python · FastAPI · httpx</span>
+          <span class="rounded-full border border-clinic-line px-3 py-1 text-slate-400">pydantic · tenacity · structlog</span>
+          <span class="rounded-full border border-clinic-line px-3 py-1 text-slate-400">pypdf · pydicom · tesseract</span>
+          <span class="rounded-full border border-clinic-line px-3 py-1 text-slate-400">React · Vite · TypeScript · Tailwind</span>
+          <span class="rounded-full border border-clinic-line px-3 py-1 text-slate-400">Docker Compose · SSE · OAuth 2.1</span>
+        </div>
+      </section>
+
+      <!-- DOCUMENTOS -->
+      <section id="documentos" class="border-t border-clinic-line py-12">
+        <h2 class="text-2xl font-bold text-slate-100">Documentos</h2>
+        <div class="mt-6 grid gap-4 sm:grid-cols-2">
+          <a href="docs/Resumen_Proyecto.docx" class="rounded-xl border border-clinic-line bg-clinic-panel p-5 hover:border-teal-500">
+            <h3 class="font-semibold text-teal-300">📄 Resumen del proyecto</h3>
+            <p class="mt-1 text-sm text-slate-400">Visión general: problema, solución, valor y estado (DOCX).</p>
+          </a>
+          <a href="docs/Resumen_Tecnico.docx" class="rounded-xl border border-clinic-line bg-clinic-panel p-5 hover:border-teal-500">
+            <h3 class="font-semibold text-teal-300">🛠️ Resumen técnico</h3>
+            <p class="mt-1 text-sm text-slate-400">Arquitectura, stack, APIs, DICOM/OCR/email y seguridad (DOCX).</p>
+          </a>
+        </div>
+        <div class="mt-6 flex flex-col items-center gap-2 rounded-xl border border-clinic-line bg-clinic-panel p-5 text-center">
+          <p class="text-sm text-slate-400">Comparte esta página con el QR:</p>
+          <img src="assets/qr.png" alt="QR de la web" class="h-32 w-32 rounded bg-white p-2" />
+        </div>
+      </section>
+
+      <!-- AVISO -->
+      <section class="border-t border-clinic-line py-10">
+        <div class="rounded-xl border border-amber-700/40 bg-amber-950/20 p-5 text-sm text-amber-200">
+          ⚠️ Prototipo <strong>experimental</strong>, no validado clínicamente. Todos los datos son
+          <strong>ficticios</strong> (RGPD). El informe humanizado por IA <strong>debe revisarlo un
+          profesional</strong> antes de entregarlo al paciente.
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-clinic-line py-8 text-center text-xs text-slate-600">
+      Operación Picos de Europa · Reto Idonia · I Hackathon IABiomed · Equipo HGU Gregorio Marañón
+    </footer>
+
+    <script>
+      // ---- Fictitious reports (caso 1) ----
+      const TECH = `INFORME RADIOLOGICO — RM DE RODILLA DERECHA (FICTICIO)
+Hospital de Sierrallana — Radiodiagnostico · DNI 12345678Z · 02/06/2026
+
+Hallazgos
+- Rotura completa aguda del ligamento cruzado anterior (LCA).
+- Edema oseo en patron "pivot-shift" (condilo externo y platillo posterolateral).
+- Rotura del cuerno posterior del menisco interno.
+- LCP y colaterales integros. Cartilago conservado. Derrame articular moderado.
+
+Conclusion
+1. Rotura completa del LCA de la rodilla derecha.
+2. Rotura del cuerno posterior del menisco interno.
+3. Edema oseo y derrame moderado.
+Se sugiere valoracion por Traumatologia para reconstruccion artroscopica del LCA.`;
+
+      const HUMAN = `Hola Manuel:
+Aqui tienes, con palabras del dia a dia, lo que muestran tus pruebas.
+
+Que te paso en la rodilla
+En la caida se rompio por completo un ligamento que da estabilidad a la rodilla (el cruzado anterior) y parte del menisco interno, una almohadilla que amortigua la articulacion. Habia algo de hinchazon en el hueso y liquido en la rodilla, normal tras el golpe.
+
+Que se recomienda
+Valoracion por Traumatologia para reparar el ligamento mediante una operacion con camara (artroscopia) y tratar el menisco. Despues, rehabilitacion para recuperar fuerza y movimiento.
+
+Tranquilidad
+Es una lesion frecuente y, bien tratada, tiene muy buenos resultados. Ante dolor intenso, mucha hinchazon o fiebre, contacta con tu medico.
+
+(Texto de ejemplo; debe revisarlo un profesional antes de entregarlo.)`;
+
+      const PHASES = [
+        { id: "ingesta", label: "Fase I — Ingesta", steps: ["Autenticación en Idonia", "Carpeta «Traslados desde Asturias»", "Carpeta del paciente (DNI)", "Imagen e informe médico subidos"] },
+        { id: "humanizacion", label: "Fase II — Humanización", steps: ["Informe enviado a Recog", "Versión empática recibida", "Inyectado como «Informe para paciente»"] },
+        { id: "entrega", label: "Fase III — Entrega", steps: ["Magic Link generado (QR + PIN)"] },
+      ];
+
+      const phasesEl = document.getElementById("phases");
+      const resultEl = document.getElementById("result");
+      const runBtn = document.getElementById("runBtn");
+
+      function renderPhases(state) {
+        phasesEl.innerHTML = "";
+        PHASES.forEach((p, i) => {
+          const st = state[i];
+          const color = st.status === "done" ? "border-teal-500" : st.status === "running" ? "border-sky-500" : "border-clinic-line";
+          const dot = st.status === "done" ? "bg-teal-400" : st.status === "running" ? "bg-sky-400 animate-pulse" : "bg-slate-500";
+          const label = st.status === "done" ? "Completada" : st.status === "running" ? "En curso…" : "En espera";
+          const steps = st.shown.map((s) => `<li class="flex gap-2 text-sm text-slate-300"><span class="text-teal-400">✓</span><span>${s}</span></li>`).join("");
+          phasesEl.innerHTML += `
+            <div class="rounded-xl border ${color} bg-clinic-panel p-5">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">${p.label}</span>
+                <span class="flex items-center gap-2 text-xs"><span class="h-2.5 w-2.5 rounded-full ${dot}"></span>${label}</span>
+              </div>
+              <ul class="mt-3 space-y-1.5">${steps}</ul>
+            </div>`;
+        });
+      }
+
+      const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+      async function runDemo() {
+        runBtn.disabled = true;
+        runBtn.textContent = "Procesando…";
+        resultEl.classList.add("hidden");
+        const state = PHASES.map(() => ({ status: "pending", shown: [] }));
+        renderPhases(state);
+        for (let i = 0; i < PHASES.length; i++) {
+          state[i].status = "running";
+          renderPhases(state);
+          for (const step of PHASES[i].steps) {
+            await sleep(650);
+            state[i].shown.push(step);
+            renderPhases(state);
+          }
+          state[i].status = "done";
+          renderPhases(state);
+          await sleep(250);
+        }
+        document.getElementById("tech").textContent = TECH;
+        document.getElementById("human").textContent = HUMAN;
+        resultEl.classList.remove("hidden");
+        resultEl.classList.add("fade-in");
+        runBtn.disabled = false;
+        runBtn.textContent = "Reiniciar demo";
+      }
+
+      // Initial render (all pending) + wire button.
+      renderPhases(PHASES.map(() => ({ status: "pending", shown: [] })));
+      runBtn.addEventListener("click", runDemo);
+    </script>
+  </body>
+</html>
