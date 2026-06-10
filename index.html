@@ -40,6 +40,7 @@
           <a href="#demo" class="hover:text-teal-300">Demo</a>
           <a href="#caracteristicas" class="hover:text-teal-300">Características</a>
           <a href="#documentos" class="hover:text-teal-300">Documentos</a>
+          <a href="#compartir" class="hover:text-teal-300">Compartir</a>
         </nav>
       </div>
     </header>
@@ -243,9 +244,44 @@ Modalidad RM/TC ─DICOM─► PACS ─DICOMweb/API─► Idonia Connect Cloud (
             <p class="mt-1 text-sm text-slate-400">Arquitectura, stack, APIs, DICOM/OCR/email y seguridad (DOCX).</p>
           </a>
         </div>
-        <div class="mt-6 flex flex-col items-center gap-2 rounded-xl border border-clinic-line bg-clinic-panel p-5 text-center">
-          <p class="text-sm text-slate-400">Comparte esta página con el QR:</p>
-          <img src="assets/qr.png" alt="QR de la web" class="h-32 w-32 rounded bg-white p-2" />
+      </section>
+
+      <!-- COMPARTIR -->
+      <section id="compartir" class="border-t border-clinic-line py-12">
+        <h2 class="text-2xl font-bold text-slate-100">Compartir</h2>
+        <div class="mt-6 rounded-xl border border-teal-700/40 bg-clinic-panel p-5">
+          <div class="flex flex-col items-center gap-5 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex-1">
+              <p class="text-sm text-slate-400">Enlace para compartir con tus compañeras:</p>
+              <div class="mt-2 flex items-center gap-2">
+                <input
+                  id="shareUrl"
+                  readonly
+                  value="https://lozanon57.github.io/picos-de-europa-web/"
+                  class="w-full rounded-lg border border-clinic-line bg-clinic-bg px-3 py-2 text-sm text-sky-300"
+                />
+                <button id="copyBtn" class="shrink-0 rounded bg-teal-500 px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-teal-400">
+                  Copiar
+                </button>
+              </div>
+              <div class="mt-3 flex flex-wrap gap-2 text-xs">
+                <a href="mailto:?subject=Operaci%C3%B3n%20Picos%20de%20Europa&body=Te%20comparto%20nuestro%20proyecto%20del%20Hackathon%20IABiomed:%20https://lozanon57.github.io/picos-de-europa-web/"
+                   class="rounded-full border border-clinic-line px-3 py-1 text-slate-300 hover:border-teal-500">✉️ Compartir por email</a>
+                <a href="https://wa.me/?text=Operaci%C3%B3n%20Picos%20de%20Europa%20%E2%80%94%20https://lozanon57.github.io/picos-de-europa-web/"
+                   target="_blank" rel="noreferrer"
+                   class="rounded-full border border-clinic-line px-3 py-1 text-slate-300 hover:border-teal-500">🟢 WhatsApp</a>
+              </div>
+              <p class="mt-3 text-xs text-slate-500">
+                Repos de código (privados, requieren invitación en GitHub):
+                <span class="text-slate-400">picos-de-europa-demo</span> ·
+                <span class="text-slate-400">picos-de-europa</span>.
+              </p>
+            </div>
+            <div class="text-center">
+              <img src="assets/qr.png" alt="QR de la web" class="h-32 w-32 rounded bg-white p-2" />
+              <p class="mt-1 text-xs text-slate-500">Escanea para abrir</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -354,6 +390,23 @@ Es una lesion frecuente y, bien tratada, tiene muy buenos resultados. Ante dolor
       // Initial render (all pending) + wire button.
       renderPhases(PHASES.map(() => ({ status: "pending", shown: [] })));
       runBtn.addEventListener("click", runDemo);
+
+      // Copy share link.
+      const copyBtn = document.getElementById("copyBtn");
+      copyBtn.addEventListener("click", async () => {
+        const url = document.getElementById("shareUrl").value;
+        try {
+          await navigator.clipboard.writeText(url);
+          copyBtn.textContent = "¡Copiado!";
+          setTimeout(() => (copyBtn.textContent = "Copiar"), 1500);
+        } catch {
+          const input = document.getElementById("shareUrl");
+          input.select();
+          document.execCommand("copy");
+          copyBtn.textContent = "¡Copiado!";
+          setTimeout(() => (copyBtn.textContent = "Copiar"), 1500);
+        }
+      });
     </script>
   </body>
 </html>
